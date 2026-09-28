@@ -728,7 +728,7 @@ let x = 1, y = 2;
 [x, y] = [y, x];
 ```
 
-> **Conexión directa con React:** `const [contador, setContador] = useState(0)` es desestructuración de arreglo. `useState` retorna un arreglo de dos posiciones; los nombres los eliges tú porque la posición es lo que importa. Esta es la razón por la que puedes escribir `const [nombre, setNombre] = useState('')` sin que React sepa nada de "nombre".
+---
 
 ### Desestructuración en parámetros
 
@@ -755,7 +755,7 @@ conectar({ host: 'api.com', seguro: true }); // https://api.com:3000
 
 El `= {}` final permite llamar la función sin argumentos. Sin él, `conectar()` lanzaría error al intentar desestructurar `undefined`.
 
-> **Conexión con React:** así se reciben las *props*. `const Tarjeta = ({ titulo, descripcion, onClick }) => ...` es el estándar de la industria y lo usarás desde la Sesión 2.
+---
 
 ### Ejemplos
 
