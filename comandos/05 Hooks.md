@@ -716,6 +716,52 @@ export default Usuarios;
 
 ---
 
+## Hook: useForm
+
+Libreria de React que facilita la gestión y validación de formularios. Se destaca por su alto rendimiento, bajo peso y la ausencia de dependencias externas. Utiliza un enfoque no controlado, lo que significa que se apoya en el DOM nativo para manejar los valores de los campos, reduciendo así la necesidad de re-renders innecesarios
+
+Archivo `Login.jsx`
+```jsx
+/* Importacion de Hook */
+import { useForm } from "react-hook-form";
+
+const Login = () => {
+  /* Desetructuracion */
+  const { register,handleSubmit,formState: { errors }} = useForm();
+  /* Constante donde se definen las validacion por input */
+  const validaciones = {
+    usuario: {
+      required: "El nombre de usuario es obligatorio",
+      pattern: {
+        value: /^[a-zA-Z0-9]+$/,
+        message: "El nombre de usuario solo puede contener letras y numeros",
+      },
+    }
+  }
+  /* Funcion que realizara el procesamiento de los datos en caso cumplirse la validacion */
+  const onSubmit = (data) => {
+    console.log(data); 
+  };
+  
+  return (
+    <>
+      {/* se asigna un evento onSubmit y se atrapa su proceso con handleSubmit, asu vez se asugna la funcion onSubmit */}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* mostrar errores se valida que en caso de existir un error se muestre */}
+        {errors.usuario && <p>{errors.usuario.message}</p> }
+        <label htmlFor="usuario" className="form-label text-primary">Usuario</label>
+        {/* se asigna un nombre al input y una validacion del objeto de validaciones */}
+        <input {...register("usuario",validaciones.usuario)} type="text" placeholder="Usuario"/>
+        <button type="submit">Iniciar sesión</button>   
+      </form>     
+    </>
+  )
+}
+export default Login;
+```
+
+---
+
 ## Custom Hook: useCounter
 
 ### ¿Qué es y qué no es?
